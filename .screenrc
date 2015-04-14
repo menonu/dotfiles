@@ -1,0 +1,3 @@
+hardstatus alwayslastline '%02c:%s %{= c.k}%H%{-} %L=%-w%45L>%{=u b.}%n %t%{-}%+w %-17<%=%{= .y}(%l)'
+hardstatus off
+term screen-256color
