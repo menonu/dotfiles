@@ -21,8 +21,6 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -47,9 +45,10 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'altercation/vim-colors-solarized'
 
-
 NeoBundleCheck
 " Quickrun
+"
+call neobundle#end()
 
 
 """ markdown {{{
