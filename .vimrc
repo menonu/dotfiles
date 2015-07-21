@@ -2,7 +2,7 @@ if &t_Co > 1
 endif
 
 set laststatus=2
-set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%11p%%[%L]
+"set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%11p%%[%L]
 " 色付け、オートインデント
 set autoindent
 set tabstop=4
@@ -44,6 +44,8 @@ NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'itchyny/lightline.vim'
 
 NeoBundleLazy 'Rip-Rip/clang_complete', {
             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
@@ -53,6 +55,10 @@ NeoBundleCheck
 " Quickrun
 "
 call neobundle#end()
+
+
+"""common keymap""""
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 """ markdown {{{
 autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
@@ -176,6 +182,39 @@ let g:jellybeans_overrides = {
 			\              'ctermfg': 'Black', 'ctermbg': 'Yellow',
 			\              'attr': 'bold' },
 			\}
+
+"Tabline Statusline
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans'
+      \ }
+
+
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+"function! s:my_tabline()  "{{{
+"  let s = ''
+"  for i in range(1, tabpagenr('$'))
+"    let bufnrs = tabpagebuflist(i)
+"    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+"    let no = i  " display 0-origin tabpagenr.
+"    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+"    let title = fnamemodify(bufname(bufnr), ':t')
+"    "let title = '[' . title . ']'
+"    let s .= '%'.i.'T'
+"    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+"    let s .= no . ':' . title
+"    let s .= mod
+"    let s .= '%#TabLineFill# '
+"  endfor
+"  let s .= '%#TabLineFill#%T%=%#TabLine#'
+"  return s
+"endfunction "}}}
+"let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+
 
 " 全角スペースの強調
 highlight JpSpace cterm=underline ctermfg=Blue guifg=Blue
