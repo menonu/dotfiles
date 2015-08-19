@@ -32,8 +32,8 @@ filetype plugin indent on
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'vim-scripts/twilight'
-NeoBundle 'w0ng/vim-hybrid'
+"NeoBundle 'vim-scripts/twilight'
+"NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -41,13 +41,17 @@ NeoBundle 'kana/vim-smartinput'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'tyru/open-browser.vim'
+"NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'itchyny/lightline.vim'
 
 NeoBundleLazy 'Rip-Rip/clang_complete', {
+            \ 'autoload' : {'filetypes' : ['c', 'cpp']}
+            \ }
+
+NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', {
             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
             \ }
 
