@@ -2,7 +2,6 @@ if &t_Co > 1
 endif
 
 set laststatus=2
-"set statusline=%t\ %m%r%h%w[%Y][%{&fenc}][%{&ff}]%=%c,%l%11p%%[%L]
 " 色付け、オートインデント
 set autoindent
 set tabstop=4
@@ -29,36 +28,44 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 filetype plugin indent on
 
 " install
-NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Yggdroot/indentLine'
 "NeoBundle 'vim-scripts/twilight'
 "NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'ujihisa/unite-colorscheme'
+"NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'plasticboy/vim-markdown'
 "NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'kannokanno/previm'
+"NeoBundle 'kannokanno/previm'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'itchyny/lightline.vim'
 
-NeoBundleLazy 'Rip-Rip/clang_complete', {
+NeoBundleLazy 'Shougo/unite.vim', {
+            \ 'autoload' : {'commands' : ['Unite']}
+            \ }
+NeoBundleLazy 'davidhalter/jedi-vim', {
+            \ 'autoload' : {'filetypes' : ['python']}
+            \ }
+NeoBundleLazy 'Mizuchi/STL-Syntax', {
+            \ 'autoload' : {'filetypes' : ['cpp']}
+            \ }
+NeoBundleLazy 'justmao945/vim-clang', {
             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
             \ }
-
-NeoBundleLazy 'octol/vim-cpp-enhanced-highlight', {
-            \ 'autoload' : {'filetypes' : ['c', 'cpp']}
+"NeoBundleLazy 'Rip-Rip/clang_complete', {
+"            \ 'autoload' : {'filetypes' : ['c', 'cpp']}
+"            \ }
+NeoBundleLazy 'ujihisa/neco-look', {
+            \ 'autoload' : {'filetypes' : ['tex']}
             \ }
-
-NeoBundleCheck
 " Quickrun
 "
 call neobundle#end()
+NeoBundleCheck
 
 
 """common keymap""""
@@ -68,7 +75,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd BufRead,BufNewFile *.mkd  set filetype=markdown
 autocmd BufRead,BufNewFile *.md  set filetype=markdown
 " Need: kannokanno/previm
-nnoremap <silent> <C-p> :PrevimOpen<CR> " Ctrl-pでプレビュー
+"nnoremap <silent> <C-p> :PrevimOpen<CR> " Ctrl-pでプレビュー
 " }}}
 
 autocmd FileType markdown setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
@@ -98,7 +105,6 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'scheme' : $HOME.'/.gosh_completions'
     \ }
 
-" Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
@@ -132,6 +138,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#force_py_version = 2
 let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 
@@ -149,25 +156,57 @@ autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,exc
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 "Cpp
-let g:clang_user_options = '-std=c++11'
 
+
+
+"clang-vim c++11 
+let g:clang_exec = 'clang36'
+let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+" disable auto completion for vim-clang
+let g:clang_auto = 0
+let g:clang_diagsopt = ''
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+" use neocomplete
+" input patterns
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
-let g:neocomplete#force_overwrite_completefunc = 1
+
+" for c and c++
 let g:neocomplete#force_omni_input_patterns.c =
       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
 let g:neocomplete#force_omni_input_patterns.cpp =
       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#force_omni_input_patterns.objc =
-      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-let g:neocomplete#force_omni_input_patterns.objcpp =
-      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_default_keymappings = 0
-let g:clang_library_path = '/usr/lib'
-let g:clang_use_library = 1
+
+
+
+
+
+
+
+"let g:clang_user_options = '-std=c++11'
+"let g:clang_auto_user_options = '.clang_complete, path'
+"
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"  let g:neocomplete#force_omni_input_patterns = {}
+"endif
+"let g:neocomplete#force_overwrite_completefunc = 1
+"let g:neocomplete#force_omni_input_patterns.c =
+"      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+"let g:neocomplete#force_omni_input_patterns.cpp =
+"      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+"let g:neocomplete#force_omni_input_patterns.objc =
+"      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+"let g:neocomplete#force_omni_input_patterns.objcpp =
+"      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+"let g:clang_complete_auto = 0
+"let g:clang_auto_select = 0
+"let g:clang_default_keymappings = 0
+"let g:clang_library_path = '/usr/local/llvm36/lib'
+"let g:clang_use_library = 1
 
 
 "color
@@ -176,10 +215,13 @@ if &term =~ "xterm-256color" || "screen-256color"
     colorscheme jellybeans
 else
     set t_Co=16
+    set background=dark
     colorscheme solarized
 endif
 
 syntax enable
+"for tex
+let g:tex_conceal=''
 
 let g:jellybeans_overrides = {
 			\    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
