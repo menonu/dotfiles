@@ -44,8 +44,8 @@ hook_add = '''
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
 
-[[plugins]]
-repo = 'nanotech/jellybeans.vim'
+#[[plugins]]
+#repo = 'nanotech/jellybeans.vim'
 
 [[plugins]]
 repo = 'kana/vim-smartinput'
