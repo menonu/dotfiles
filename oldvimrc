@@ -157,11 +157,9 @@ autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 "Cpp
 
-
-
 "clang-vim c++11 
 let g:clang_exec = 'clang36'
-let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 " disable auto completion for vim-clang
 let g:clang_auto = 0
 let g:clang_diagsopt = ''
