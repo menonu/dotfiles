@@ -71,6 +71,8 @@ filetype plugin indent on
 call s:source_rc('encoding.rc.vim')
 "---------------------------------------------------------------------------
 
+call s:source_rc('build.rc.vim')
+
 call s:source_rc('color.rc.vim')
 
 call s:source_rc('edit.rc.vim')
