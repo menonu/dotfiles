@@ -67,6 +67,9 @@ call dein#call_hook('post_source')
 
 filetype plugin indent on
 
+" 
+call s:source_rc('filetypes.rc.vim')
+
 " Encoding:
 call s:source_rc('encoding.rc.vim')
 "---------------------------------------------------------------------------
