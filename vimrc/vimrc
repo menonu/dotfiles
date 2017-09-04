@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 function! s:source_rc(path, ...) abort "{{{
   let use_global = get(a:000, 0, !has('vim_starting'))
   let abspath = resolve(expand('~/.vim/rc/' . a:path))
@@ -81,4 +84,6 @@ call s:source_rc('color.rc.vim')
 call s:source_rc('edit.rc.vim')
 
 call s:source_rc('mappings.rc.vim')
+
+call s:source_rc('tags.rc.vim')
 

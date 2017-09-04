@@ -11,7 +11,15 @@ set shiftwidth=4
 set softtabstop=4
 set backspace=indent,eol,start
 
+" set search path
+set path+=**/include
 set incsearch
+
+" open vimgrep, grep ... resuls in quickfix window
+autocmd QuickFixCmdPost *grep* cwindow
+
+" grでカーソル下のキーワードをvimgrep
+nnoremap <expr> gr ':vimgrep ;\<' . expand('<cword>') . '\>; **/*.c'
 
 let g:tex_conceal=''
 

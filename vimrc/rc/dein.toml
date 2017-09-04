@@ -1,7 +1,6 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-
 [[plugins]]
 repo = 'Shougo/neocomplete.vim' 
 if = "has('lua')"
@@ -54,9 +53,18 @@ repo = 'kana/vim-smartinput'
 repo = 'tpope/vim-surround'
 
 [[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+depends = 'unite.vim' 
+
+[[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
   let g:quickrun_config = {}
   let g:quickrun_config.c = {'cmdopt':'-lm'}
 '''
-

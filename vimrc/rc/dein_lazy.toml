@@ -1,7 +1,4 @@
 [[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
 depends = ['neocomplete.vim']
@@ -28,8 +25,8 @@ repo = 'justmao945/vim-clang'
 on_ft = 'cpp'
 hook_source = '''
   "clang-vim c++11 
-  let g:clang_exec = 'clang36'
-  let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
+  "let g:clang_exec = 'clang'
+  let g:clang_cpp_options = '-std=c++1y'
   " disable auto completion for vim-clang
   let g:clang_auto = 0
   let g:clang_diagsopt = ''
