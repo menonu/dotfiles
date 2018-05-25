@@ -1,0 +1,13 @@
+{
+    "editor.fontSize": 16,
+    "C_Cpp.intelliSenseEngine": "Default",
+    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: Google, IndentWidth: 4, ContinuationIndentWidth: 8, Standard: C++11, ColumnLimit: 100}",
+    "editor.cursorStyle": "block",
+    "editor.renderWhitespace": "boundary",
+    "window.zoomLevel": 0,
+    "editor.renderControlCharacters": true,
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.trimTrailingWhitespace": true,
+    "extensions.autoUpdate": false,
+    "code-eol.color":"#555"
+}
