@@ -64,7 +64,7 @@ depends = 'unite.vim'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
-hook_add = '''
-  let g:quickrun_config = {}
-  let g:quickrun_config.c = {'cmdopt':'-lm'}
-'''
+#hook_add = '''
+#  let g:quickrun_config = {}
+#  let g:quickrun_config.c = {'cmdopt':'-lm'}
+#'''
